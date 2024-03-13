@@ -10,11 +10,13 @@ import { SigninSignupComponent } from './customer/signin-signup/signin-signup.co
 import { SellerDashboardComponent } from './customer/seller/seller-dashboard/seller-dashboard.component';
 import { BuyerDashboardComponent } from './customer/buyer/buyer-dashboard/buyer-dashboard.component';
 import { CheckoutComponent } from './customer/buyer/checkout/checkout.component';
-import { PageNotFoundDirective } from './shared/layouts/page-not-found.directive';
+import { HeaderComponent } from './shared/layouts/header/header.component';
+import { FooterComponent } from './app/shared/layouts/footer/footer.component';
+import { PageNotFoundComponent } from './app/shared/layouts/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: "/", pathMatch: "full" },
-    { path: '', component: HomeComponent },
+    { path: "", redirectTo: "home", pathMatch: "full" },
+    { path: 'home', component: HomeComponent },
     { path: "my-profile", component: UserProfileComponent },
     { path: "contact-us", component: ContactUsComponent },
 
@@ -49,7 +51,12 @@ export const routes: Routes = [
             { path: "checkout", component: CheckoutComponent}
         ] 
     },
+
     {
-        path: '**', component: PageNotFoundDirective
+        path: "", children: [
+            { path: "header", component: HeaderComponent },
+            { path: "footer", component: FooterComponent },
+            { path: "page-not-found", component: PageNotFoundComponent}
+        ]
     }
 ];
